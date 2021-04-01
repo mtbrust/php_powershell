@@ -1,0 +1,18 @@
+
+
+<IfModule mod_authnz_sspi.c> 
+    AuthType SSPI 
+    SSPIAuth On 
+    SSPIAuthoritative On 
+    SSPIOfferBasic Off 
+    Require valid-user 
+</ifModule> 
+
+<IfModule mod_auth_sspi.c>
+    AuthType SSPI
+    SSPIAuth On
+    SSPIOfferBasic Off
+    SSPIAuthoritative On
+    require valid-user
+</ifModule>
+
