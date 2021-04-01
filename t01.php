@@ -14,14 +14,14 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
-if($_POST){
+if ($_POST) {
   $user = $_POST['user'];
   $msg = $_POST['msg'];
   $r = shell_exec("MSG $user /V /W $msg");
   //print_r($r);
-  if(!$r)
+  if (!$r)
     echo '<h4>Erro no envio. Verifique os caracteres</h4>';
-    else
+  else
     echo '<h4>Usuário respondeu.</h4>';
 }
 
@@ -73,12 +73,41 @@ $user_name = shell_exec('echo %username%');
 <hr>
 <h5>Formulário de envio de mensagem.</h5>
 <form action="" method="POST">
-<span>Usuário</span><br>
-<input name="user" type="text" placeholder="user" value="<?php echo $user_name; ?>">
-<br><br>
-<span>Mensagem</span><br>
-<textarea name="msg" id="" cols="30" rows="10"></textarea>
-<br><br>
-<button type="submit">Enviar</button>
-<p>Aguarde a resposta do usuário.</p>
+  <span>Usuário</span><br>
+  <input name="user" type="text" placeholder="user" value="<?php echo $user_name; ?>">
+  <br><br>
+  <span>Mensagem</span><br>
+  <textarea name="msg" id="" cols="30" rows="10"></textarea>
+  <br><br>
+  <button type="submit">Enviar</button>
+  <p>Aguarde a resposta do usuário.</p>
 </form>
+
+
+<hr>
+
+<pre>Syntax
+      MSG <i>username</i> [<i>options</i>] [<i>message</i>]
+
+      MSG <i>sessionname</i> [<i>options</i>] [<i>message</i>]
+
+      MSG <i>sessionid</i>   [<i>options</i>] [<i>message</i>]
+
+      MSG  @<i>filename</i> [<i>options</i>] [<i>message</i>]
+
+      MSG * [<i>options</i>] [<i>message</i>]
+
+Options
+
+   <i>username</i>            The user to send to, <span class="code">* </span>will send to all sessions on the machine.
+
+   /SERVER:<i>servername</i>  The server to contact (default is current).
+
+   /TIME:<i>seconds</i>       Time delay to wait for receiver to acknowledge msg.
+
+   /V                  Verbose, display extra information.
+
+   /W                  Wait for response from user, useful with /V.
+
+   <i>message</i>             The message text to send, some special characters may
+                       have to be escaped.</pre>
