@@ -32,6 +32,7 @@ $output = '';
 // $output = shell_exec('MSG brust * Mensagem corrida! chão é'); //OK
 // $output = shell_exec('time'); //OK
 // $output = shell_exec('msg /server192168.1.3 desv-01 "ola"'); // ERRO
+// $output = shell_exec('echo %username%'); // ok
 echo "<pre>$output</pre>";
 // echo Shell_Exec ('powershell.exe -executionpolicy bypass -NoProfile -Command "Get-Process | ConvertTo-Html"'); // Demora um pouco.
 
@@ -65,12 +66,15 @@ echo '<hr>';
 echo 'PHP_AUTH_USER:<br>';
 echo $_SERVER['PHP_AUTH_USER'];
 
+// Obtem usuário atual.
+$user_name = shell_exec('echo %username%');
+
 ?>
 <hr>
 <h5>Formulário de envio de mensagem.</h5>
 <form action="" method="POST">
 <span>Usuário</span><br>
-<input name="user" type="text" placeholder="user" value="brust">
+<input name="user" type="text" placeholder="user" value="<?php echo $user_name; ?>">
 <br><br>
 <span>Mensagem</span><br>
 <textarea name="msg" id="" cols="30" rows="10"></textarea>
